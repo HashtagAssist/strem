@@ -28,6 +28,7 @@ import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/f
         [placeholder]="placeholder"
         [value]="value"
         [disabled]="disabled"
+        [readOnly]="readonly"
         (input)="onInputChange($event)"
         (blur)="onTouched()"
         class="flex h-10 w-full rounded-md border border-dark-200 bg-white px-3 py-2 text-sm
@@ -46,6 +47,7 @@ export class InputComponent implements ControlValueAccessor {
   @Input() type: 'text' | 'email' | 'password' = 'text';
   @Input() placeholder = '';
   @Input() error = '';
+  @Input() readonly: boolean = false;
 
   value: string = '';
   disabled: boolean = false;

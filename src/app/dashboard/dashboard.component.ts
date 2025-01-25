@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardComponent } from '../shared/ui/card.component';
 import { StatCardComponent } from '../shared/ui/stat-card.component';
+import { LucideAngularModule } from 'lucide-angular';
+import { RouterModule } from '@angular/router';
+import { ButtonComponent } from '../shared/ui/button.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,11 +12,20 @@ import { StatCardComponent } from '../shared/ui/stat-card.component';
   imports: [
     CommonModule, 
     CardComponent, 
-    StatCardComponent
+    StatCardComponent,
+    LucideAngularModule,
+    RouterModule,
+    ButtonComponent
   ],
   template: `
     <div class="p-6 bg-gray-50 min-h-screen">
-      <h1 class="text-3xl font-bold text-dark-900 mb-6">Dashboard</h1>
+      <div class="flex justify-between items-center mb-6">
+        <h1 class="text-3xl font-bold text-dark-900">Dashboard</h1>
+        <app-button routerLink="/settings">
+          <i-lucide name="settings" class="h-4 w-4 mr-2" />
+          Einstellungen
+        </app-button>
+      </div>
       
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <app-stat-card 

@@ -1,40 +1,42 @@
 import { Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { AuthGuard } from '../app/auth/guards/auth.guard';
+import { AuthGuard } from './auth/guards/auth.guard';
+import { MainLayoutComponent } from './shared/layouts/main-layout.component';
 
 export const routes: Routes = [
-  // Umleitung von der Root-URL zum Dashboard
-  { 
-    path: '', 
-    redirectTo: 'dashboard', 
-    pathMatch: 'full' 
+  {
+    path: '',
+    component: MainLayoutComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full'
+      },
+      {
+        path: 'dashboard',
+        component: DashboardComponent
+      },
+      {
+        path: 'media',
+        loadComponent: () => import('./media/pages/media-list/media-list.component')
+          .then(m => m.MediaListComponent)
+      },
+      {
+        path: 'settings',
+        loadComponent: () => import('./settings/pages/settings/settings.component')
+          .then(m => m.SettingsComponent)
+      }
+    ]
   },
-  
-  // Login-Route (lazy loaded)
   {
     path: 'login',
-    loadComponent: () => import('../app/auth/pages/login/login.component')
+    loadComponent: () => import('./auth/pages/login/login.component')
       .then(m => m.LoginComponent)
   },
-  
-  // Dashboard-Route (geschützt)
   {
-    path: 'dashboard',
-    component: DashboardComponent,
-    canActivate: [AuthGuard]
-  },
-  
-  // Media-Route (geschützt & lazy loaded)
-  {
-    path: 'media',
-    loadComponent: () => import('../app/media/pages/media-list/media-list.component')
-      .then(m => m.MediaListComponent),
-    canActivate: [AuthGuard]
-  },
-  
-  // Fallback für unbekannte Routen
-  { 
-    path: '**', 
-    redirectTo: 'dashboard' 
+    path: '**',
+    redirectTo: 'dashboard'
   }
 ];
