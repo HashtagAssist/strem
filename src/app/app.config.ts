@@ -19,7 +19,10 @@ import {
   X,
   ChevronRight,
   ChevronDown,
-  Loader2
+  Loader2,
+  Mail,
+  Lock,
+  LogIn
 } from "lucide-angular";
 
 export const appConfig: ApplicationConfig = {
@@ -41,7 +44,10 @@ export const appConfig: ApplicationConfig = {
       X,
       ChevronRight,
       ChevronDown,
-      Loader2
+      Loader2,
+      Mail,
+      Lock,
+      LogIn
     }))
   ]
 };

@@ -1,0 +1,68 @@
+.login-container {
+  background-color: #0a0a1a;
+  perspective: 1000px;
+}
+
+.bg-gradient-animation {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient-animation 15s ease infinite;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+@keyframes gradient-animation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.input-glow input {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: all 0.3s ease;
+}
+
+.input-glow input:focus {
+  box-shadow: 0 0 15px rgba(36, 123, 250, 0.5);
+  border-color: rgba(36, 123, 250, 0.7);
+}
+
+.btn-pulse {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.btn-pulse::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg, 
+    transparent, 
+    rgba(255,255,255,0.2), 
+    transparent
+  );
+  transition: all 0.5s ease;
+}
+
+.btn-pulse:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 17px rgba(0, 0, 0, 0.2);
+}
+.btn-pulse:hover::before {
+  left: 100%;
+}
+
+.btn-pulse:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+

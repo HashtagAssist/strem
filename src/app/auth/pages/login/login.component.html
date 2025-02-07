@@ -1,40 +1,95 @@
-<div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-md w-full space-y-8">
-      <div>
-        <h2 class="mt-6 text-center text-3xl font-bold text-dark-900">
-          Anmelden
-        </h2>
-      </div>
-      
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="mt-8 space-y-6">
-        <div class="space-y-4">
-          <app-input
-            id="email"
-            label="E-Mail"
-            type="email"
-            formControlName="email"
-            [error]="getErrorMessage('email')"
-            placeholder="max@beispiel.de"
-          />
-          
-          <app-input
-            id="password"
-            label="Passwort"
-            type="password"
-            formControlName="password"
-            [error]="getErrorMessage('password')"
-            placeholder="••••••••"
-          />
-        </div>
+<div class="login-container min-h-screen flex items-center justify-center overflow-hidden relative">
+  <!-- Dynamischer Hintergrund -->
+  <div class="absolute inset-0 bg-gradient-animation z-0"></div>
+  
+  <!-- Glasmorphic Login Container -->
+  <div 
+    #loginContainer
+    class="login-card relative z-10 w-full max-w-md p-8 bg-white/10 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 transform transition-all duration-700"
+  >
+    <div class="text-center mb-8">
+      <h1 class="text-4xl font-bold bg-clip-text text-transparent 
+                 bg-gradient-to-r from-primary-400 to-primary-600 
+                 tracking-tight">Media Center</h1>
+      <p class="mt-2 text-sm text-white/70">
+        Willkommen zurück, Innovator
+      </p>
+    </div>
 
-        <app-button
-          type="submit"
-          [loading]="loading"
-          [disabled]="loginForm.invalid"
-          class="w-full"
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-6">
+      <div class="space-y-4">
+        <app-input
+          id="email"
+          label="E-Mail"
+          type="email"
+          formControlName="email"
+          [error]="getErrorMessage('email')"
+          class="input-glow"
+          placeholder="deine@innovation.com"
         >
-          Anmelden
-        </app-button>
-      </form>
+          <div class="absolute left-3 top-1/2 -translate-y-1/2 text-white/50">
+            <i-lucide name="mail" class="w-5 h-5" />
+          </div>
+        </app-input>
+        
+        <app-input
+          id="password"
+          label="Passwort"
+          type="password"
+          formControlName="password"
+          [error]="getErrorMessage('password')"
+          class="input-glow"
+          placeholder="••••••••"
+        >
+          <div class="absolute left-3 top-1/2 -translate-y-1/2 text-white/50">
+            <i-lucide name="lock" class="w-5 h-5" />
+          </div>
+        </app-input>
+      </div>
+
+      <div class="flex items-center justify-between">
+        <div class="flex items-center">
+          <input 
+            id="remember-me" 
+            type="checkbox" 
+            class="hidden peer"
+          />
+          <label 
+            for="remember-me" 
+            class="flex items-center text-sm text-white/70 
+                   cursor-pointer select-none
+                   before:inline-block before:w-5 before:h-5 
+                   before:mr-2 before:border before:border-white/30 
+                   before:rounded peer-checked:before:bg-primary-500
+                   peer-checked:before:border-primary-500"
+          >
+            Angemeldet bleiben
+          </label>
+        </div>
+      </div>
+
+      <app-button
+        type="submit"
+        [loading]="loading"
+        [disabled]="loginForm.invalid"
+        class="w-full btn-gradient text-white"
+      >
+        Einloggen
+        <i-lucide name="log-in" class="ml-2 h-5 w-5" />
+      </app-button>
+    </form>
+
+    <div class="mt-6 text-center">
+      <a 
+        href="#" 
+        class="text-sm text-white/50 hover:text-primary-400 
+               transition-colors duration-300"
+      >
+        Passwort vergessen?
+      </a>
     </div>
   </div>
+
+  <!-- Particle Background -->
+  <div #particleContainer class="particle-container absolute inset-0 pointer-events-none"></div>
+</div>
